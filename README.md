@@ -9,6 +9,15 @@ At this point the project runs without any dependencies and almost on every web 
 
 Features and changes are listed below:
 
+Changelog v0.0.4 [14/10/2020] {
+
+    - restart button and reinitialization - 
+
+    ·   added a Restart button
+    ·   added a 'restart()' function used to initialize all the needed variables before loading a new game board
+    ·   added a 'restartClick()' function linked with the button to reinitialize the current game board
+}
+
 Changelog v0.0.3 [14/10/2020] {
 
     - win conditions and game over -

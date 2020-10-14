@@ -2,6 +2,7 @@
 let container = document.querySelector(".container");
 let playerStatus = document.querySelector(".playerStatus");
 let gameStatus = document.querySelector(".gameStatus");
+let restartButton = document.querySelector(".restart");
 var moves = 0;
 var dimension = 0;
 var boardLength = 0;
@@ -9,6 +10,7 @@ var activePlayer = 1;
 let cells = [];
 var mainDiagonal = [];
 var secondaryDiagonal = [];
+
 function setDiagonals(squaredArray){
     let row1 = 0;
     let row2 = 0;
@@ -22,6 +24,14 @@ function setDiagonals(squaredArray){
             row2 += 1;
         }
     }
+}
+
+
+function restart(){
+    activePlayer = 1;
+    moves = 0;
+    playerStatus.innerHTML = "ACTIVE : 1";
+    gameStatus.innerHTML = "";
 }
 
 /* _____GAME BOARD SETTINGS______ */
@@ -41,6 +51,7 @@ activeBoard(document.getElementById("dimensions"));
    game board dimensions */
    function showGameBoard(){
     // initialize local variables each time a new game board is built
+    restart();
     let row = 0;
     let col = 0;
     cells = [];
@@ -115,6 +126,7 @@ function check(element){
         activePlayer = 0; // prevents an infinite game loop
     } else if (moves == boardLength){
         gameStatus.innerHTML = "Draw."
+        activePlayer = 0;
     }
 }
 
@@ -152,4 +164,16 @@ function checkSecondaryDiagonal(element){
    for clicking on it again */
 function clickedAnimation(){
     alert("This cell has been already clicked.");
+}
+
+/* restartClick() function executes when clicking on the Restart button and initializes the current game board */
+function restartClick(){
+    restart();
+    for (let i=0; i<boardLength; i++){
+        cells[i].classList.remove("player1");
+        cells[i].classList.remove("player2");
+        cells[i].dataset.clicked = false;
+        cells[i].dataset.player = "";
+        cells[i].innerHTML = i;
+    }
 }
